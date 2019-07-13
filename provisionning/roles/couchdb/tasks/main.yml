@@ -1,0 +1,32 @@
+- name: Create Couchdb repo file
+  template: src=bintray-apache-couchdb-rpm.repo.j2
+            dest=/etc/yum.repos.d/bintray-apache-couchdb-rpm.repo
+            mode=0644
+
+- name: Install CouchDB
+  yum: name=couchdb
+       state=latest
+
+- name: Add couchdb group
+  group: name={{ couchdb_group_name }}
+         state=present
+
+- name: Add couchdb user
+  user: name={{ couchdb_user_name }}
+        comment="Couchdb administrator"
+        shell=/bin/bash
+        system=yes
+        append=yes
+        groups={{ couchdb_group_name }}
+
+- name: Configure Couchdb
+  template: src=default.ini.j2
+            dest=/opt/couchdb/etc/default.ini
+            mode=0644
+
+- name: Start Couchdb service
+  command: "systemctl start couchdb"
+
+- name: Enable Couchdb service
+  command: "systemctl enable couchdb"
+    

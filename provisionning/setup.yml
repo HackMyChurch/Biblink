@@ -1,0 +1,8 @@
+- name: Create a Couchdb instance, initialize couchapp with Argos repo and run Porphyry
+  hosts: all
+  remote_user: root
+  roles:
+    - base
+    - couchdb
+    - couchapp-argos-porphyry
+    

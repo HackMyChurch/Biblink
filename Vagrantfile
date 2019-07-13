@@ -35,6 +35,7 @@ Vagrant.configure("2") do |config|
   # NOTE: This will enable public access to the opened port
   # config.vm.network "forwarded_port", guest: 80, host: 8080
   config.vm.network "forwarded_port", guest: 5984, host: 5984
+  config.vm.network "forwarded_port", guest: 3000, host: 1234
   
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine and only allow access
@@ -78,14 +79,13 @@ Vagrant.configure("2") do |config|
   #   apt-get update
   #   apt-get install -y apache2
   # SHELL
-  config.vm.provision "Install requirements", type:'shell' do |s|
-    s.path = "provisionning/bootstrap.sh"
-  end
+  # config.vm.provision "Install requirements", type:'shell' do |s|
+  #   s.path = "provisionning/bootstrap.sh"
+  # end
   
   config.vm.provision "Ansible provisionning", type:'ansible_local' do |ansible|
     ansible.become = true
-    ansible.config_file = "provisionning/ansible.cfg"
-    ansible.playbook = "provisionning/install-couchdb.yml"
+    ansible.playbook = "provisionning/setup.yml"
   end
   # config.vm.provision :ansible do |ansible|
   #   ansible.compatibility_mode = "2.0"
