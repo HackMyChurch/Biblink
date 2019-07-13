@@ -1,0 +1,3 @@
+git_repo: "https://github.com/Hypertopic/Argos.git"
+argos_dir: "/home/vagrant/Argos"
+couchdb_url: "http://127.0.0.1:5984"

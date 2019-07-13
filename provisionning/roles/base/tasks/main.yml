@@ -1,0 +1,22 @@
+- name: Install epel-release
+  yum: 
+    name: "epel-release"
+
+- name: Install net-tools
+  yum:
+    name: "net-tools"
+
+- name: yum group install "Development Tools"
+  yum:
+    name: "@Development tools"
+
+- name: Install python-devel
+  yum: 
+    name: "python-devel"
+
+- name: Install python-pip
+  yum: 
+    name: "python-pip"
+
+- name: Upgrade pip install
+  command: "pip install --upgrade pip"

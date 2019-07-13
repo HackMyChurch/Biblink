@@ -1,0 +1,8 @@
+- name: Create a Couchdb instance and initialize couchapp with Argos repo
+  hosts: all
+  remote_user: root
+  roles:
+    - base
+    - couchdb
+    - couchapp-argos
+    

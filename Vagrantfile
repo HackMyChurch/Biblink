@@ -78,14 +78,13 @@ Vagrant.configure("2") do |config|
   #   apt-get update
   #   apt-get install -y apache2
   # SHELL
-  config.vm.provision "Install requirements", type:'shell' do |s|
-    s.path = "provisionning/bootstrap.sh"
-  end
+  # config.vm.provision "Install requirements", type:'shell' do |s|
+  #   s.path = "provisionning/bootstrap.sh"
+  # end
   
   config.vm.provision "Ansible provisionning", type:'ansible_local' do |ansible|
     ansible.become = true
-    ansible.config_file = "provisionning/ansible.cfg"
-    ansible.playbook = "provisionning/install-couchdb.yml"
+    ansible.playbook = "provisionning/setup.yml"
   end
   # config.vm.provision :ansible do |ansible|
   #   ansible.compatibility_mode = "2.0"
