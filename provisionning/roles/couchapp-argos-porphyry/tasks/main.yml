@@ -1,0 +1,36 @@
+- name: Install couchapp
+  pip: name=couchapp
+
+- name: Fetch Argos sources
+  git: repo={{ argos_git_repo }}
+       dest={{ argos_dir }}
+
+- name: Init couchapp
+  command: "couchapp init"
+  args:
+    chdir: "{{ argos_dir }}"
+
+- name: Configure Couchdb with Argos models
+  command: "couchapp push {{ couchdb_url }}/argos"
+  args:
+    chdir: "{{ argos_dir }}"
+
+- name: Fetch Porphyry sources
+  git: repo={{ porphyry_git_repo }}
+       dest={{ porphyry_dir }}
+
+- name: Populate Database
+  shell: 'curl -d @{{ root_dir }}/data/HMB_01.json -H "Content-type: application/json" -X POST http://127.0.0.1:5984/argos/_bulk_docs'
+
+- name: Remove package.json.lock file
+  file: 
+    state: absent
+    path: "{{ porphyry_dir }}/package-lock.json"
+
+- name: Install Porphyry
+  become: yes
+  become_user: root
+  command: "npm i"
+  args:
+    chdir: "{{ porphyry_dir }}"
+

@@ -60,8 +60,15 @@ Couchapp
 <br>`# couchapp init`
 <br>`# couchapp push http://127.0.0.1:5984/argos`
 
-### Load data
+### Load data (TODO update dataset)
 <br>`# curl -d @data/HMB_01.json -H "Content-type: application/json" -X POST http://127.0.0.1:5984/argos/_bulk_docs`
 
 # Access url from host machine
 [http://192.168.56.4:5984/_utils/](http://192.168.56.4:5984/_utils/)
+
+### Install Porphyry (TODO automate configuration)
+<br>`# git clone https://github.com/gumn/Porphyry.git`
+<br>`# cd Porphyry`
+<br>`# npm i`
+<br>Update services config in `src/sonfig/config.json`
+<br>`npm start`

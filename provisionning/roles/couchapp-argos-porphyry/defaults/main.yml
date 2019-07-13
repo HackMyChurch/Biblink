@@ -1,0 +1,6 @@
+root_dir: "/home/vagrant"
+argos_git_repo: "https://github.com/Hypertopic/Argos.git"
+argos_dir: "{{ root_dir }}/Argos"
+couchdb_url: "http://127.0.0.1:5984"
+porphyry_git_repo: "https://github.com/gumn/Porphyry.git"
+porphyry_dir: "{{ root_dir }}/Porphyry"

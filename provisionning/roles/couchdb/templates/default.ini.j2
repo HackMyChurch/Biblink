@@ -139,7 +139,7 @@ database_prefix = userdb-
 port = 5986
 bind_address = 127.0.0.1
 authentication_handlers = {couch_httpd_auth, cookie_authentication_handler}, {couch_httpd_auth, default_authentication_handler}
-secure_rewrites = true
+secure_rewrites = false
 allow_jsonp = false
 ; Options for the MochiWeb HTTP server.
 ;server_options = [{backlog, 128}, {acceptor_pool_size, 16}]
@@ -240,9 +240,9 @@ credentials = false
 ; You can't set origins: * and credentials = true at the same time.
 origins = *
 ; List of accepted headers separated by a comma
-; headers =
+headers = accept, authorization, content-type, origin, referer, if-match
 ; List of accepted methods
-; methods =
+methods = GET, PUT, POST, HEAD, DELETE
 
 ; Configuration for a vhost
 ;[cors:http://example.com]

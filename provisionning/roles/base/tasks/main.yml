@@ -20,3 +20,20 @@
 
 - name: Upgrade pip install
   command: "pip install --upgrade pip"
+
+- name: Download nodejs install script
+  get_url: 
+    url: "{{ nodejs_url }}"
+    dest: "{{ base_dir }}"
+    mode: '0555'
+
+- name: Execute nodejs script to install yum repo
+  become: yes
+  become_user: root
+  command: "./{{ nodejs_install_script }}"
+  args:
+    chdir: "{{ base_dir }}"
+
+- name: Install nodejs
+  yum: 
+    name: "nodejs"
